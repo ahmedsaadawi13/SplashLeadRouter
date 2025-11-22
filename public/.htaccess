@@ -1,0 +1,38 @@
+# FILE: /public/.htaccess
+
+# SplashLeadRouter - Apache Configuration
+# Redirect all requests to index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect to HTTPS (optional - enable in production)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+    # Redirect Trailing Slashes
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Prevent access to .env files
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
