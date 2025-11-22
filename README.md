@@ -40,7 +40,7 @@ A complete PHP & MySQL SaaS application for real estate agencies to automaticall
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/SplashLeadRouter.git
+git clone https://github.com/ahmedsaadawi13/SplashLeadRouter.git
 cd SplashLeadRouter
 ```
 
